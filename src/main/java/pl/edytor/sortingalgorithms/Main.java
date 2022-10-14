@@ -1,6 +1,5 @@
 package pl.edytor.sortingalgorithms;
 
-
 import java.util.Random;
 
 public class Main {
@@ -13,77 +12,36 @@ public class Main {
     public static void main(String[] args) {
         int[] table = {100, 500, 1000, 3000, 5000, 10000, 20000, 50000, 70000, 100000};
         for (int i = 0; i < 10; i++) {
-            insertSorting(table[i]);
+            sort(table[i], insertSort);
+            sort(table[i], bubbleSort);
+            sort(table[i], heapSort);
+            sort(table[i], quickSort);
         }
-        for (int i = 0; i < 10; i++) {
-            bubbleSorting(table[i]);
-        }
-        for (int i = 0; i < 10; i++) {
-            heapSorting(table[i]);
-        }
-        for (int i = 0; i < 10; i++) {
-            quickSorting(table[i]);
-        }
-}
-       public static void insertSorting(int capacity) {
-        long sum = 0;
-           for (int i = 1; i < 4; i++) {
-                int [] table = createAndFillTable(capacity);
-                long start = System.currentTimeMillis();
-                insertSort.sort(table);
-                long stop = System.currentTimeMillis();
-                long time = stop - start;
-                System.out.println("InsertSort with a capacity of "+ capacity + ", " + i + " try: " + time);
-                sum += time;
-            }
-           long average = sum/3;
-           System.out.println("The average is " + average);
-           System.out.println("***************************");
-        }
-    public static void bubbleSorting(int capacity) {
-        long sum = 0;
-        for (int i = 1; i < 4; i++) {
-            int [] table = createAndFillTable(capacity);
-            long start = System.currentTimeMillis();
-            bubbleSort.sort(table);
-            long stop = System.currentTimeMillis();
-            long time = stop - start;
-            System.out.println("BubbleSort with a capacity of "+ capacity + ", " + i + " try: " + time);
-            sum += time;
-        }
-        long average = sum/3;
-        System.out.println("The average is " + average);
-        System.out.println("***************************");
     }
-    public static void heapSorting(int capacity) {
+public static void sort(int capacity, Sorting sorting) {
+        String sortingMethod = "Unknown";
+        if (sorting instanceof BubbleSort) {
+            sortingMethod = "Bubble Sort";
+        } else if (sorting instanceof InsertSort) {
+            sortingMethod = "Insert Sort";
+        } else if ( sorting instanceof HeapSort) {
+            sortingMethod = "Heap Sort";
+        } else if (sorting instanceof QuickSort) {
+            sortingMethod = "Quick Sort";
+        }
         long sum = 0;
         for (int i = 1; i < 4; i++) {
             int [] table = createAndFillTable(capacity);
             long start = System.currentTimeMillis();
-            heapSort.sort(table);
+            sorting.sort(table);
             long stop = System.currentTimeMillis();
             long time = stop - start;
-            System.out.println("HeapSort with a capacity of "+ capacity + ", " + i + " try: " + time);
+            System.out.println(sortingMethod + ", capacity = "+ capacity + ", " + i + " try: " + time);
             sum += time;
         }
         long average = sum/3;
         System.out.println("The average is " + average);
-        System.out.println("***************************");
-    }
-    public static void quickSorting(int capacity) {
-        long sum = 0;
-        for (int i = 1; i < 4; i++) {
-            int [] table = createAndFillTable(capacity);
-            long start = System.currentTimeMillis();
-            quickSort.sort(table);
-            long stop = System.currentTimeMillis();
-            long time = stop - start;
-            System.out.println("QuickSort with a capacity of "+ capacity + ", " + i + " try: " + time);
-            sum += time;
-        }
-        long average = sum/3;
-        System.out.println("The average is " + average);
-        System.out.println("***************************");
+        System.out.println("********************************************");
     }
 
     public static int[] createAndFillTable(int size) {
