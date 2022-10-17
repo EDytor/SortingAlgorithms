@@ -24,7 +24,7 @@ public class InsertSort implements Sorting {
                             i--;
                         }
                     } else {
-                        index = i+1;
+                        index = i + 1;
                         break;
                     }
                 }
@@ -36,11 +36,16 @@ public class InsertSort implements Sorting {
                         break;
                     }
                 }
-                    newTable[index] = table[indexOfAddedElement];
+                newTable[index] = table[indexOfAddedElement];
 
                 indexOfAddedElement++;
                 lastIndexOfNewTable++;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Insert Sort";
     }
 }

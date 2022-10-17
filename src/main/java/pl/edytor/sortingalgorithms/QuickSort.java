@@ -35,4 +35,9 @@ public class QuickSort implements Sorting {
             quickSort(boarder + 1, right, table);
         }
     }
+
+    @Override
+    public String toString() {
+        return "Quick Sort";
+    }
 }
